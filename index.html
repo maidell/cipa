@@ -195,11 +195,29 @@ summary::-webkit-details-marker { display: none; }
 .compact-transcript > summary { padding: 18px 0; }
 .compact-transcript .transcript-text { max-width: 760px; }
 .compact-transcript .download-link { margin-bottom: 20px; }
+.suggestion-jump { margin-top: 22px; }
 .cipa-section { display: grid; grid-template-columns: 1fr 1.3fr; gap: 50px; padding-top: 58px; padding-bottom: 58px; }
 .cipa-section h2 { font-size: 38px; line-height: 1.15; }
 .cipa-section p { font-size: 16px; }
 .cipa-section p:last-of-type { margin-bottom: 15px; }
 .cipa-source { color: var(--muted); font-size: 12px; }
+.suggestion-section { padding-block: 58px; background: #eaeede; }
+.suggestion-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 50px; align-items: start; }
+.suggestion-grid h2 { max-width: 360px; font-size: 38px; line-height: 1.15; }
+.suggestion-intro { max-width: 370px; margin: 23px 0 0; font-size: 16px; }
+.suggestion-grid form { min-width: 0; }
+.suggestion-label { display: block; margin-bottom: 10px; font-size: 15px; font-weight: 600; }
+.suggestion-grid textarea { display: block; width: 100%; min-height: 170px; padding: 14px 16px; border: 1px solid #8eaa94; border-radius: 5px; color: var(--ink); background: var(--white); font: inherit; font-size: 16px; line-height: 1.6; resize: vertical; }
+.suggestion-grid textarea::placeholder { color: #657367; opacity: 1; }
+.suggestion-grid textarea:focus-visible { outline: 3px solid #47794e; outline-offset: 3px; }
+.suggestion-note { margin: 13px 0 20px; color: var(--muted); font-size: 13px; line-height: 1.6; }
+.suggestion-grid button:disabled { cursor: wait; opacity: .7; }
+.suggestion-status { margin: 18px 0 0; font-size: 14px; line-height: 1.6; }
+.suggestion-status:empty { display: none; }
+.suggestion-status[data-state="error"] { color: #7a3025; }
+.suggestion-status[data-state="success"] { color: #245533; }
+.suggestion-service { margin: 18px 0 0; color: var(--muted); font-size: 12px; }
+.form-honeypot { display: none; }
 
 @media (min-width: 1400px) {
   .hero { padding-top: 80px; padding-bottom: 90px; }
@@ -327,6 +345,12 @@ summary::-webkit-details-marker { display: none; }
   .cipa-section { grid-template-columns: 1fr; gap: 22px; padding-top: 40px; padding-bottom: 40px; }
   .cipa-section h2 { font-size: 33px; }
   .cipa-section p { font-size: 15px; }
+  .suggestion-section { padding-block: 42px; }
+  .suggestion-grid { grid-template-columns: 1fr; gap: 28px; }
+  .suggestion-grid h2 { font-size: 33px; max-width: 420px; }
+  .suggestion-intro { margin-top: 18px; font-size: 15px; max-width: 100%; }
+  .suggestion-grid button { width: 100%; justify-content: center; }
+  .site-header nav { gap: 14px; }
 }
 
 @media (max-width: 360px) {
@@ -371,7 +395,7 @@ summary::-webkit-details-marker { display: none; }
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
   <header class="site-header wrap">
     <a class="brand" href="#inicio" aria-label="Maidel na CIPA, início">Maidel<span>na CIPA</span></a>
-    <nav aria-label="Navegação principal"><a href="#apresentacao">Apresentação <span aria-hidden="true">↗</span></a></nav>
+    <nav aria-label="Navegação principal"><a href="#apresentacao">Apresentação</a><a href="#sugestoes">Sugestões <span aria-hidden="true">↗</span></a></nav>
   </header>
 
   <main id="conteudo">
@@ -409,6 +433,7 @@ summary::-webkit-details-marker { display: none; }
           </div>
           <div class="player-container" id="video-container" hidden></div>
         </div>
+        <a class="button button-outline suggestion-jump" href="#sugestoes">Enviar uma sugestão <span aria-hidden="true">↘</span></a>
         <details class="transcript compact-transcript">
           <summary>Ler a apresentação<span aria-hidden="true">+</span></summary>
           <div class="transcript-text"><p>Olá, Senacker! Eu sou o Maidel, instrutor EAD dos cursos de informática da Faculdade Senac Portão, e sou candidato à CIPA.</p>
@@ -417,10 +442,34 @@ summary::-webkit-details-marker { display: none; }
 <p>Também quero levar pra CIPA a ideia de um grupo no GymRats. Pra quem não conhece, é um app pra registrar atividades físicas e fazer desafios com os colegas. Pode ser caminhada, bicicleta ou treino, cada um no seu ritmo. E, claro, quero propor uma premiação pra quem mais participar dos desafios.</p>
 <p>E quero ouvir quem trabalha em outros setores e turnos, para conhecer necessidades que vão além da minha experiência no EAD.</p>
 <p>Na comissão, pretendo encaminhar as questões que os colegas trouxerem e acompanhar o andamento, junto com o trabalho de prevenção de acidentes, doenças relacionadas ao trabalho e assédio.</p>
-<p>Se tiver alguma sugestão ou preocupação sobre a sua rotina, pode conversar comigo.</p>
+<p>Tem alguma sugestão ou questão pra CIPA? Pode mandar pelo <a href="#sugestoes">formulário aqui embaixo</a>, sem colocar nome nem e-mail. Se eu for eleito, quero levar essas ideias pra discutir com a comissão.</p>
 <p>Conto com seu voto.</p></div>
-          <a class="download-link" href="data:text/plain;charset=utf-8,Maidel%20na%20CIPA%20%E2%80%94%20apresenta%C3%A7%C3%A3o%0AFaculdade%20Senac%20Port%C3%A3o%0A%0AOl%C3%A1%2C%20Senacker%21%20Eu%20sou%20o%20Maidel%2C%20instrutor%20EAD%20dos%20cursos%20de%20inform%C3%A1tica%20da%20Faculdade%20Senac%20Port%C3%A3o%2C%20e%20sou%20candidato%20%C3%A0%20CIPA.%0A%0ANo%20meu%20trabalho%2C%20passo%20boa%20parte%20do%20dia%20sentado%2C%20usando%20o%20computador.%20Sei%20que%20muitos%20colegas%2C%20inclusive%20do%20administrativo%2C%20t%C3%AAm%20uma%20rotina%20parecida.%0A%0AUma%20das%20ideias%20que%20quero%20levar%20%C3%A0%20CIPA%20%C3%A9%20a%20gin%C3%A1stica%20laboral.%20Quero%20conversar%20com%20os%20profissionais%20e%20as%20%C3%A1reas%20respons%C3%A1veis%20sobre%20essa%20possibilidade%20e%20sobre%20as%20condi%C3%A7%C3%B5es%20dos%20nossos%20postos%20de%20trabalho.%0A%0ATamb%C3%A9m%20quero%20levar%20pra%20CIPA%20a%20ideia%20de%20um%20grupo%20no%20GymRats.%20Pra%20quem%20n%C3%A3o%20conhece%2C%20%C3%A9%20um%20app%20pra%20registrar%20atividades%20f%C3%ADsicas%20e%20fazer%20desafios%20com%20os%20colegas.%20Pode%20ser%20caminhada%2C%20bicicleta%20ou%20treino%2C%20cada%20um%20no%20seu%20ritmo.%20E%2C%20claro%2C%20quero%20propor%20uma%20premia%C3%A7%C3%A3o%20pra%20quem%20mais%20participar%20dos%20desafios.%0A%0AE%20quero%20ouvir%20quem%20trabalha%20em%20outros%20setores%20e%20turnos%2C%20para%20conhecer%20necessidades%20que%20v%C3%A3o%20al%C3%A9m%20da%20minha%20experi%C3%AAncia%20no%20EAD.%0A%0ANa%20comiss%C3%A3o%2C%20pretendo%20encaminhar%20as%20quest%C3%B5es%20que%20os%20colegas%20trouxerem%20e%20acompanhar%20o%20andamento%2C%20junto%20com%20o%20trabalho%20de%20preven%C3%A7%C3%A3o%20de%20acidentes%2C%20doen%C3%A7as%20relacionadas%20ao%20trabalho%20e%20ass%C3%A9dio.%0A%0ASe%20tiver%20alguma%20sugest%C3%A3o%20ou%20preocupa%C3%A7%C3%A3o%20sobre%20a%20sua%20rotina%2C%20pode%20conversar%20comigo.%0A%0AConto%20com%20seu%20voto.%0A" download="apresentacao-maidel.txt">Baixar texto <span aria-hidden="true">↓</span></a>
+          <a class="download-link" href="data:text/plain;charset=utf-8,Maidel%20na%20CIPA%20%E2%80%94%20apresenta%C3%A7%C3%A3o%0AFaculdade%20Senac%20Port%C3%A3o%0A%0AOl%C3%A1%2C%20Senacker%21%20Eu%20sou%20o%20Maidel%2C%20instrutor%20EAD%20dos%20cursos%20de%20inform%C3%A1tica%20da%20Faculdade%20Senac%20Port%C3%A3o%2C%20e%20sou%20candidato%20%C3%A0%20CIPA.%0A%0ANo%20meu%20trabalho%2C%20passo%20boa%20parte%20do%20dia%20sentado%2C%20usando%20o%20computador.%20Sei%20que%20muitos%20colegas%2C%20inclusive%20do%20administrativo%2C%20t%C3%AAm%20uma%20rotina%20parecida.%0A%0AUma%20das%20ideias%20que%20quero%20levar%20%C3%A0%20CIPA%20%C3%A9%20a%20gin%C3%A1stica%20laboral.%20Quero%20conversar%20com%20os%20profissionais%20e%20as%20%C3%A1reas%20respons%C3%A1veis%20sobre%20essa%20possibilidade%20e%20sobre%20as%20condi%C3%A7%C3%B5es%20dos%20nossos%20postos%20de%20trabalho.%0A%0ATamb%C3%A9m%20quero%20levar%20pra%20CIPA%20a%20ideia%20de%20um%20grupo%20no%20GymRats.%20Pra%20quem%20n%C3%A3o%20conhece%2C%20%C3%A9%20um%20app%20pra%20registrar%20atividades%20f%C3%ADsicas%20e%20fazer%20desafios%20com%20os%20colegas.%20Pode%20ser%20caminhada%2C%20bicicleta%20ou%20treino%2C%20cada%20um%20no%20seu%20ritmo.%20E%2C%20claro%2C%20quero%20propor%20uma%20premia%C3%A7%C3%A3o%20pra%20quem%20mais%20participar%20dos%20desafios.%0A%0AE%20quero%20ouvir%20quem%20trabalha%20em%20outros%20setores%20e%20turnos%2C%20para%20conhecer%20necessidades%20que%20v%C3%A3o%20al%C3%A9m%20da%20minha%20experi%C3%AAncia%20no%20EAD.%0A%0ANa%20comiss%C3%A3o%2C%20pretendo%20encaminhar%20as%20quest%C3%B5es%20que%20os%20colegas%20trouxerem%20e%20acompanhar%20o%20andamento%2C%20junto%20com%20o%20trabalho%20de%20preven%C3%A7%C3%A3o%20de%20acidentes%2C%20doen%C3%A7as%20relacionadas%20ao%20trabalho%20e%20ass%C3%A9dio.%0A%0ATem%20alguma%20sugest%C3%A3o%20ou%20quest%C3%A3o%20pra%20CIPA%3F%20Pode%20mandar%20pelo%20formul%C3%A1rio%20aqui%20embaixo%2C%20sem%20colocar%20nome%20nem%20e-mail.%20Se%20eu%20for%20eleito%2C%20quero%20levar%20essas%20ideias%20pra%20discutir%20com%20a%20comiss%C3%A3o.%0A%0AConto%20com%20seu%20voto.%0A" download="apresentacao-maidel.txt">Baixar texto <span aria-hidden="true">↓</span></a>
         </details>
+      </div>
+    </section>
+    <section class="suggestion-section" id="sugestoes" aria-labelledby="suggestion-title">
+      <div class="wrap suggestion-grid">
+        <div>
+          <h2 id="suggestion-title">Tem alguma sugestão pra CIPA?</h2>
+          <p class="suggestion-intro">Me conta o que você gostaria de levar pra comissão. Se eu for eleito, quero já chegar com as ideias dos colegas pra discutir.</p>
+        </div>
+        <form id="suggestion-form" action="https://api.web3forms.com/submit" method="POST" aria-label="Enviar uma sugestão para a CIPA">
+          <input type="hidden" name="access_key" id="suggestion-access-key" value="ff1e8b33-ef7a-48fc-a762-c6d17542966e">
+          <input type="hidden" name="subject" value="Nova sugestão para a CIPA — Maidel">
+          <input type="hidden" name="from_name" value="Sugestões para a CIPA">
+          <input type="hidden" name="redirect" value="https://web3forms.com/success">
+          <div class="form-honeypot" aria-hidden="true">
+            <label for="suggestion-website">Deixe este campo desmarcado</label>
+            <input type="checkbox" id="suggestion-website" name="botcheck" tabindex="-1" autocomplete="off">
+          </div>
+          <label class="suggestion-label" for="suggestion-message">O que você gostaria de sugerir?</label>
+          <textarea id="suggestion-message" name="sugestao" rows="6" maxlength="5000" required aria-describedby="suggestion-note" placeholder="Pode ser algo que você percebe no dia a dia ou uma ideia de melhoria."></textarea>
+          <p class="suggestion-note" id="suggestion-note">Você não precisa informar nome nem e-mail. A sugestão será encaminhada ao meu e-mail.</p>
+          <button type="submit" class="button button-dark" id="suggestion-submit">Enviar sugestão <span aria-hidden="true">↗</span></button>
+          <p class="suggestion-status" id="suggestion-status" role="status" aria-live="polite"></p>
+          <p class="suggestion-service">Envio pelo <a href="https://web3forms.com/" target="_blank" rel="noopener noreferrer">Web3Forms</a>.</p>
+        </form>
       </div>
     </section>
     <section class="cipa-section wrap" id="sobre-cipa" aria-labelledby="cipa-title">
@@ -483,6 +532,72 @@ window.campaignMedia = {
   container.append(video);
   container.hidden = false;
   cover.hidden = true;
+})();
+
+(() => {
+  "use strict";
+  const form = document.getElementById("suggestion-form");
+  if (!form || !window.fetch) return;
+  const message = document.getElementById("suggestion-message");
+  const button = document.getElementById("suggestion-submit");
+  const status = document.getElementById("suggestion-status");
+  const honeypot = document.getElementById("suggestion-website");
+  const accessKey = document.getElementById("suggestion-access-key");
+  const buttonContent = button.innerHTML;
+  let sending = false;
+  const showStatus = (text, state) => {
+    status.textContent = text;
+    status.dataset.state = state;
+  };
+  if (!accessKey?.value.trim()) {
+    button.disabled = true;
+    showStatus("O formulário está sendo preparado. Volte daqui a pouco.", "pending");
+    return;
+  }
+  message.addEventListener("input", () => message.setCustomValidity(""));
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    if (sending || honeypot.checked) return;
+    const suggestion = message.value.trim();
+    message.setCustomValidity(suggestion ? "" : "Escreva sua sugestão antes de enviar.");
+    if (!form.reportValidity()) return;
+    sending = true;
+    button.disabled = true;
+    button.textContent = "Enviando...";
+    showStatus("", "");
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 20000);
+    try {
+      const endpoint = new URL(form.action);
+      const payload = Object.fromEntries(new FormData(form));
+      payload.sugestao = suggestion;
+      delete payload.redirect;
+      const response = await fetch(endpoint.href, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify(payload),
+        signal: controller.signal
+      });
+      const data = await response.json();
+      const needsActivation = /activat|verify your email|confirm your email|ativ[aç]/i.test(String(data?.message || data?.body?.message || ""));
+      if (!response.ok || needsActivation || (data.success !== true && data.success !== "true")) {
+        showStatus(needsActivation
+          ? "O formulário ainda está sendo ativado. Tente de novo mais tarde."
+          : "Não consegui enviar agora. Sua sugestão continua aqui para você tentar novamente.", "error");
+        return;
+      }
+      form.reset();
+      message.setCustomValidity("");
+      showStatus("Sugestão enviada. Obrigado por compartilhar!", "success");
+    } catch {
+      showStatus("Não consegui enviar agora. Sua sugestão continua aqui para você tentar novamente.", "error");
+    } finally {
+      window.clearTimeout(timeout);
+      sending = false;
+      button.disabled = false;
+      button.innerHTML = buttonContent;
+    }
+  });
 })();
 
 </script>
